@@ -1,0 +1,31 @@
+{
+  "name": "switch-north-immigration",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "tsc -p tsconfig.test.json && node --test .test-build/tests/**/*.test.js"
+  },
+  "dependencies": {
+    "@types/pdfkit": "^0.17.6",
+    "lucide-react": "1.44.0",
+    "next": "16.3.4",
+    "pdfkit": "^0.20.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "stripe": "^22.6.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "22.20.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.4",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

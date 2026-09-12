@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbfcfd;
+  --foreground: #0b1730;
+  --muted: #526173;
+  --surface: #ffffff;
+  --surface-soft: #f1f7f9;
+  --border: #d7e1e7;
+  --brand-teal: #0f7894;
+  --brand-navy: #172a50;
+  --brand-teal-soft: #e6f5f8;
+  --brand-mint: #2ec9a3;
+  --brand-mint-soft: #e3faf3;
+  --accent-red: #c2414b;
+  --accent-red-dark: #8f2c35;
+  --accent-red-soft: #fbeaec;
+  --deep-ink: #0b1730;
+  --shadow-soft: 0 16px 42px rgba(23, 42, 80, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-border: var(--border);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-teal-soft: var(--brand-teal-soft);
+  --color-brand-mint: var(--brand-mint);
+  --color-brand-mint-soft: var(--brand-mint-soft);
+  --color-accent-red: var(--accent-red);
+  --color-accent-red-dark: var(--accent-red-dark);
+  --color-accent-red-soft: var(--accent-red-soft);
+  --color-deep-ink: var(--deep-ink);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-newsreader);
+  --shadow-soft: var(--shadow-soft);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(15, 120, 148, 0.18);
+}
+
+.container-page {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+}
+
+.focus-ring:focus-visible {
+  outline-color: var(--brand-teal);
+}
+
+.button-control {
+  background-color: var(--button-bg, var(--brand-navy));
+  border-color: var(--button-border, var(--brand-navy));
+  color: var(--button-fg, #ffffff);
+  text-decoration: none;
+}
+
+.button-control:visited {
+  color: var(--button-fg, #ffffff);
+}
+
+.button-control:focus-visible {
+  background-color: var(--button-bg, var(--brand-navy));
+  border-color: var(--button-border, var(--brand-navy));
+  color: var(--button-fg, #ffffff);
+}
+
+.button-control:hover {
+  background-color: var(--button-hover-bg, var(--deep-ink));
+  border-color: var(--button-hover-border, var(--deep-ink));
+  color: var(--button-hover-fg, #ffffff);
+  text-decoration: none;
+}
+
+.button-control:active {
+  background-color: var(--button-active-bg, var(--button-hover-bg, var(--deep-ink)));
+  border-color: var(--button-active-border, var(--button-hover-border, var(--deep-ink)));
+  color: var(--button-active-fg, var(--button-hover-fg, #ffffff));
+}
+
+.button-control:disabled,
+.button-control[aria-disabled="true"] {
+  background-color: var(--button-disabled-bg, #e2e8ee);
+  border-color: var(--button-disabled-border, var(--border));
+  color: var(--button-disabled-fg, var(--muted));
+  pointer-events: none;
+}
+
+.button-control svg {
+  color: currentColor;
+  stroke: currentColor;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.prose-site {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.prose-site p + p {
+  margin-top: 1rem;
+}

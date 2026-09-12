@@ -1,0 +1,33 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "incremental": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "outDir": ".test-build",
+    "rootDir": ".",
+    "types": ["node"]
+  },
+  "include": [
+    "data/agreement.ts",
+    "data/assessment.ts",
+    "data/booking.ts",
+    "data/contact.ts",
+    "data/crs-rules.ts",
+    "data/site.ts",
+    "lib/admin/**/*.ts",
+    "lib/agreement/**/*.ts",
+    "lib/booking/**/*.ts",
+    "lib/crs/**/*.ts",
+    "lib/email/**/*.ts",
+    "tests/**/*.ts",
+    "types/agreement.ts",
+    "types/admin.ts",
+    "types/assessment.ts",
+    "types/booking.ts",
+    "types/crs.ts",
+    "types/lead.ts"
+  ],
+  "exclude": ["node_modules", ".next", ".test-build"]
+}
