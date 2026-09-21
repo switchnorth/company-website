@@ -15,6 +15,7 @@
     "data/booking.ts",
     "data/contact.ts",
     "data/crs-rules.ts",
+    "data/features.ts",
     "data/site.ts",
     "lib/admin/**/*.ts",
     "lib/agreement/**/*.ts",

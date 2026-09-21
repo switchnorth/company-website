@@ -9,6 +9,7 @@ import {
   Plane,
   ShieldCheck,
 } from "lucide-react";
+import { getConsultationCtaHref } from "./features";
 import type { SiteConfig } from "@/types/site";
 
 // DEVELOPMENT PLACEHOLDER DATA:
@@ -29,7 +30,7 @@ export const siteConfig: SiteConfig = {
   consultantName: "Inderjit Singh",
   consultantTitle: "Canadian Immigration Consultant",
   consultantLicense: "DEMO-RCIC-000000",
-  bookingUrl: "/consultation",
+  bookingUrl: getConsultationCtaHref(),
   consultationCta: "Book a Consultation",
   secondaryCta: "Free Assessment",
   logo: {

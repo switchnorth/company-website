@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { featureFlags } from "@/data/features";
 import { requireAdmin } from "@/lib/admin/auth";
 import {
   cancelAppointment,
@@ -15,6 +17,12 @@ function getAppointmentId(formData: FormData) {
   return String(formData.get("appointmentId") ?? "").trim();
 }
 
+function assertAdminFeatureEnabled() {
+  if (!featureFlags.adminPortal) {
+    redirect("/");
+  }
+}
+
 function revalidateAdminAppointment(id: string) {
   revalidatePath("/admin");
   revalidatePath("/admin/appointments");
@@ -23,6 +31,7 @@ function revalidateAdminAppointment(id: string) {
 }
 
 export async function confirmAppointmentAction(formData: FormData) {
+  assertAdminFeatureEnabled();
   const admin = await requireAdmin();
   const id = getAppointmentId(formData);
 
@@ -31,6 +40,7 @@ export async function confirmAppointmentAction(formData: FormData) {
 }
 
 export async function cancelAppointmentAction(formData: FormData) {
+  assertAdminFeatureEnabled();
   const admin = await requireAdmin();
   const id = getAppointmentId(formData);
 
@@ -39,6 +49,7 @@ export async function cancelAppointmentAction(formData: FormData) {
 }
 
 export async function completeAppointmentAction(formData: FormData) {
+  assertAdminFeatureEnabled();
   const admin = await requireAdmin();
   const id = getAppointmentId(formData);
 
@@ -47,6 +58,7 @@ export async function completeAppointmentAction(formData: FormData) {
 }
 
 export async function noShowAppointmentAction(formData: FormData) {
+  assertAdminFeatureEnabled();
   const admin = await requireAdmin();
   const id = getAppointmentId(formData);
 
@@ -55,6 +67,7 @@ export async function noShowAppointmentAction(formData: FormData) {
 }
 
 export async function resendConfirmationAction(formData: FormData) {
+  assertAdminFeatureEnabled();
   const admin = await requireAdmin();
   const id = getAppointmentId(formData);
 
@@ -63,6 +76,7 @@ export async function resendConfirmationAction(formData: FormData) {
 }
 
 export async function resendAgreementAction(formData: FormData) {
+  assertAdminFeatureEnabled();
   const admin = await requireAdmin();
   const id = getAppointmentId(formData);
 

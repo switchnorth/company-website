@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { featureFlags } from "@/data/features";
 import { processStripePaymentEvent } from "@/lib/booking/payment-events";
 import {
   constructStripeWebhookEvent,
@@ -8,6 +9,10 @@ import { scheduleAppointmentReminders } from "@/lib/booking/lifecycle";
 import { generateAndSendServiceAgreement } from "@/lib/agreement/workflow";
 
 export async function POST(request: Request) {
+  if (!featureFlags.payments) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
   if (!isStripeConfigured() || !webhookSecret) {
@@ -38,7 +43,9 @@ export async function POST(request: Request) {
     const result = await processStripePaymentEvent(event, {
       async onAppointmentConfirmed(appointment) {
         try {
-          await generateAndSendServiceAgreement(appointment);
+          if (featureFlags.agreementPortal) {
+            await generateAndSendServiceAgreement(appointment);
+          }
           await scheduleAppointmentReminders(appointment);
         } catch {
           // Payment fulfillment must remain idempotent even if agreement delivery fails.

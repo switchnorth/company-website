@@ -1,6 +1,7 @@
 "use server";
 
 import { verifyCaptchaToken } from "@/lib/captcha";
+import { featureFlags } from "@/data/features";
 import {
   getBookingHoneypot,
   parseBookingFormData,
@@ -14,6 +15,17 @@ export async function submitBookingForm(
   _previousState: BookingFormState,
   formData: FormData,
 ): Promise<BookingFormState> {
+  if (!featureFlags.appointments) {
+    return {
+      status: "error",
+      message:
+        "Online booking is not available yet. Please contact Switch North Immigration to request a consultation.",
+      errors: {
+        form: "Online booking is disabled for this launch.",
+      },
+    };
+  }
+
   if (getBookingHoneypot(formData)) {
     return {
       status: "pending_payment",

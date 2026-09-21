@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { featureFlags } from "@/data/features";
 import {
   cancelManagedAppointment,
   rescheduleAppointment,
@@ -29,6 +30,10 @@ export async function rescheduleManagedAppointmentAction(
   token: string,
   formData: FormData,
 ) {
+  if (!featureFlags.appointmentManagement) {
+    redirect("/contact");
+  }
+
   await assertManagementRateLimit(token);
 
   const slot = String(formData.get("slot") ?? "");
@@ -52,6 +57,10 @@ export async function cancelManagedAppointmentAction(
   token: string,
   formData: FormData,
 ) {
+  if (!featureFlags.appointmentManagement) {
+    redirect("/contact");
+  }
+
   await assertManagementRateLimit(token);
 
   if (formData.get("confirmCancel") !== "on") {

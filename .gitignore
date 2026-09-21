@@ -27,6 +27,7 @@ pnpm-debug.log*
 
 # typescript
 *.tsbuildinfo
+.test-build
 
 
 .agents

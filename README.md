@@ -86,7 +86,74 @@ In development with `EMAIL_PROVIDER=disabled`, forms validate and show a
 development success state without sending email. In production, email delivery
 must be configured for submissions to be accepted.
 
+## V1 Public Deployment
+
+The V1 public website is a marketing and lead-generation site. Booking,
+payment, service-agreement delivery, appointment management, and the admin
+portal are preserved in the codebase for future phases, but they are disabled
+by default and must stay disabled for the first public launch.
+
+Enabled public routes for V1:
+
+- `/`
+- `/about`
+- `/services` and `/services/*`
+- `/assessment`
+- `/tools/crs-calculator`
+- `/resources` and `/resources/*`
+- `/faq`
+- `/contact`
+- `/privacy` and `/terms`
+
+Required V1 environment variable:
+
+- `NEXT_PUBLIC_SITE_URL`: production site URL, for example
+  `https://switchnorth.ca`.
+
+Optional V1 lead-delivery variables:
+
+- `EMAIL_PROVIDER`: `disabled` locally, or `resend` when the sender and API key
+  are configured.
+- `EMAIL_FROM`: verified sender address.
+- `LEAD_NOTIFICATION_TO`: inbox for contact and assessment notifications.
+- `RESEND_API_KEY`: server-side Resend key when `EMAIL_PROVIDER=resend`.
+- `CAPTCHA_SECRET_KEY`: reserved for future spam protection.
+
+V1 feature flags should remain disabled:
+
+- `NEXT_PUBLIC_FEATURE_APPOINTMENTS=false`
+- `FEATURE_APPOINTMENTS=false`
+- `FEATURE_PAYMENTS=false`
+- `FEATURE_AGREEMENT_PORTAL=false`
+- `FEATURE_ADMIN_PORTAL=false`
+- `FEATURE_APPOINTMENT_MANAGEMENT=false`
+
+With appointments disabled, all standard consultation CTAs route to `/contact`.
+The unfinished booking, payment, admin, and appointment-management routes are
+also server-side guarded so they cannot be treated as production features by a
+direct URL visit.
+
+Deferred future-system variables are not required for V1 while the flags above
+remain disabled:
+
+- `DATABASE_URL`
+- `STRIPE_SECRET_KEY`
+- `STRIPE_WEBHOOK_SECRET`
+- `GOOGLE_CALENDAR_ID`
+- `GOOGLE_SERVICE_ACCOUNT_EMAIL`
+- `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
+- `ADMIN_SESSION_SECRET`
+
 ## Appointment Booking
+
+Appointment booking is currently a future feature. Keep
+`FEATURE_APPOINTMENTS=false` and `NEXT_PUBLIC_FEATURE_APPOINTMENTS=false` for
+the V1 public launch.
+
+The preserved booking code can be re-enabled in a later release after durable
+persistence, payment, calendar, privacy, and operational processes are approved.
 
 The integrated consultation booking flow lives at `/consultation`.
 
@@ -121,6 +188,9 @@ and mark the appointment `CONFIRMED` only after a verified provider webhook
 reports successful payment.
 
 ## Stripe Consultation Payments
+
+Stripe consultation payment is currently a future feature. Keep
+`FEATURE_PAYMENTS=false` for the V1 public launch.
 
 Consultation payment uses Stripe-hosted Checkout. The application never
 collects or stores raw card details.
@@ -157,6 +227,9 @@ Handled payment states:
 
 ## Service Agreement PDF Workflow
 
+Service Agreement PDF delivery is currently a future feature. Keep
+`FEATURE_AGREEMENT_PORTAL=false` for the V1 public launch.
+
 After a verified Stripe successful-payment webhook confirms an appointment, the
 server generates a versioned Service Agreement PDF and emails it to the client
 as an attachment. The browser redirect is never treated as payment proof.
@@ -181,6 +254,10 @@ created. Do not log agreement contents, send agreement data to analytics, or
 enable production agreement delivery until the review checklist is complete.
 
 ## Admin Dashboard
+
+The admin dashboard is currently a future feature. Keep
+`FEATURE_ADMIN_PORTAL=false` and `FEATURE_APPOINTMENT_MANAGEMENT=false` for the
+V1 public launch.
 
 The internal admin dashboard lives at `/admin` and is intentionally limited to
 appointment operations. It includes dashboard metrics, appointment search and

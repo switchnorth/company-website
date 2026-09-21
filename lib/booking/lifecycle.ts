@@ -15,7 +15,7 @@ import {
 } from "./repository";
 import { addMinutesToTime, appointmentStartInstant } from "./timezone";
 import { recordAuditEntry } from "../admin/audit";
-import type { CalendarAdapter } from "../calendar/google";
+import type { CalendarAdapter, CalendarOperationResult } from "../calendar/google";
 import { googleCalendarAdapter } from "../calendar/google";
 import type { EmailMessage, EmailSendResult } from "../email/provider";
 import type { AdminIdentity } from "../../types/admin";
@@ -38,6 +38,18 @@ type AddressedEmailTemplate = {
   text: string;
   to: string;
 };
+
+function failedCalendarResult(
+  appointment: AppointmentRecord,
+  error: Error,
+): CalendarOperationResult {
+  return {
+    eventId: appointment.calendarEventId,
+    eventUrl: appointment.calendarEventUrl,
+    message: error.message,
+    status: "FAILED",
+  };
+}
 
 export class AppointmentLifecycleError extends Error {
   code:
@@ -268,10 +280,7 @@ export async function rescheduleAppointment({
 
   const calendar = await (options.calendarAdapter ?? googleCalendarAdapter)
     .updateAppointment(updated)
-    .catch((error: Error) => ({
-      message: error.message,
-      status: "FAILED" as const,
-    }));
+    .catch((error: Error) => failedCalendarResult(updated, error));
   await getAppointmentRepository().updateCalendarSync(updated.id, {
     eventId: calendar.eventId,
     eventUrl: calendar.eventUrl,
@@ -365,10 +374,7 @@ export async function cancelManagedAppointment({
 
   const calendar = await (options.calendarAdapter ?? googleCalendarAdapter)
     .cancelAppointment(updated)
-    .catch((error: Error) => ({
-      message: error.message,
-      status: "FAILED" as const,
-    }));
+    .catch((error: Error) => failedCalendarResult(updated, error));
   await getAppointmentRepository().updateCalendarSync(updated.id, {
     eventId: calendar.eventId,
     eventUrl: calendar.eventUrl,

@@ -1,17 +1,8 @@
 import { agreementDefaults, serviceAgreementVersion } from "../../data/agreement";
 import { formatConsultationPrice } from "../../data/booking";
 import { getConsultationType } from "../booking/availability";
-import {
-  getAppointmentReminderRepository,
-  getAppointmentRepository,
-} from "../booking/repository";
+import { getAppointmentRepository } from "../booking/repository";
 import { sendAppointmentConfirmation } from "../lead-workflow";
-import {
-  cancelManagedAppointment,
-  rescheduleAppointment,
-  sendDueAppointmentReminders,
-  sendManagementLinkToClient,
-} from "../booking/lifecycle";
 import {
   getEmailFromAddress,
   getLeadNotificationRecipient,
@@ -35,7 +26,6 @@ import type {
   CalendarStatus,
 } from "../../types/admin";
 import type {
-  AppointmentReminderRecord,
   AppointmentRecord,
   AppointmentStatus,
   PaymentStatus,

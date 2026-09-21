@@ -1,13 +1,13 @@
 import type { MetadataRoute } from "next";
+import { featureFlags } from "@/data/features";
 import { resourceArticles } from "@/data/resources";
 import { siteConfig } from "@/data/site";
 
-const routes = [
+const publicRoutes = [
   "",
   "/about",
   "/services",
   "/assessment",
-  "/consultation",
   "/resources",
   "/faq",
   "/tools/crs-calculator",
@@ -18,6 +18,9 @@ const routes = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const routes = featureFlags.appointments
+    ? [...publicRoutes, "/consultation"]
+    : publicRoutes;
 
   return [
     ...routes.map((route) => ({
