@@ -14,7 +14,7 @@ experience, awards, government affiliations, CICC verification claims, or
 success statistics should be added. If sample testimonials are ever needed for
 UI development, label each one clearly as `SAMPLE TESTIMONIAL`.
 
-## Logo Asset
+## Logo Asset   
 
 The active logo is `public/assets/images/logo.jpeg` and is configured through
 `siteConfig.logo.src` in `data/site.ts`. The shared `Logo` component uses
