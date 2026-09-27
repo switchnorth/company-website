@@ -16,6 +16,7 @@ UI development, label each one clearly as `SAMPLE TESTIMONIAL`.
 
 ## Logo Asset
 
+
 The active logo is `public/assets/images/logo.jpeg` and is configured through
 `siteConfig.logo.src` in `data/site.ts`. The shared `Logo` component uses
 `next/image` and preserves the original `363x186` aspect ratio.
