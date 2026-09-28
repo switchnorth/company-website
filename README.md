@@ -68,23 +68,33 @@ contents should not be sent to analytics or logged unnecessarily.
 
 Create environment variables from `.env.example`.
 
-Required when email delivery is enabled:
+Required when email delivery is enabled for V1 Zoho Mail:
 
-- `EMAIL_PROVIDER`: use `disabled` for local development or `resend` for the
-  built-in Resend adapter.
-- `EMAIL_FROM`: verified sender address for website emails.
-- `LEAD_NOTIFICATION_TO`: inbox that receives internal lead notifications.
-- `RESEND_API_KEY`: server-side Resend API key. Never expose this with a
+- `EMAIL_PROVIDER`: use `disabled` locally and `zoho` in production once Zoho
+  SMTP values are configured.
+- `EMAIL_FROM`: authenticated sender identity, for example
+  `Switch North Immigration <info@switchnorth.ca>`.
+- `CONTACT_RECIPIENT`: inbox that receives internal lead notifications, usually
+  `info@switchnorth.ca`.
+- `SMTP_HOST`: Zoho SMTP hostname from the client's Zoho Mail settings.
+- `SMTP_PORT`: Zoho SMTP port from the client's Zoho Mail settings.
+- `SMTP_SECURE`: `true` or `false`, matching the selected Zoho SMTP port.
+- `SMTP_USER`: authenticated mailbox, usually `info@switchnorth.ca`.
+- `SMTP_PASSWORD`: Zoho app password or SMTP password. Never expose this with a
   `NEXT_PUBLIC_` prefix.
 
 Optional:
 
+- `LEAD_NOTIFICATION_TO`: legacy recipient variable. `CONTACT_RECIPIENT` takes
+  precedence.
+- `RESEND_API_KEY`: only needed if `EMAIL_PROVIDER=resend` is intentionally used.
 - `CAPTCHA_SECRET_KEY`: reserved for future CAPTCHA integration if spam becomes
   a problem. Leave unset until a provider verifier is implemented.
 
 In development with `EMAIL_PROVIDER=disabled`, forms validate and show a
 development success state without sending email. In production, email delivery
-must be configured for submissions to be accepted.
+must be configured for submissions to be accepted. See
+`docs/VERCEL_ZOHO_EMAIL_SETUP.md` for the exact Vercel variable checklist.
 
 ## V1 Public Deployment
 
@@ -110,13 +120,13 @@ Required V1 environment variable:
 - `NEXT_PUBLIC_SITE_URL`: production site URL, for example
   `https://switchnorth.ca`.
 
-Optional V1 lead-delivery variables:
+V1 lead-delivery variables:
 
-- `EMAIL_PROVIDER`: `disabled` locally, or `resend` when the sender and API key
-  are configured.
-- `EMAIL_FROM`: verified sender address.
-- `LEAD_NOTIFICATION_TO`: inbox for contact and assessment notifications.
-- `RESEND_API_KEY`: server-side Resend key when `EMAIL_PROVIDER=resend`.
+- `EMAIL_PROVIDER`: `disabled` locally, or `zoho` when Zoho SMTP is configured.
+- `EMAIL_FROM`: authenticated sender identity.
+- `CONTACT_RECIPIENT`: inbox for contact and assessment notifications.
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`: Zoho
+  SMTP values from the client's Zoho Mail settings.
 - `CAPTCHA_SECRET_KEY`: reserved for future spam protection.
 
 V1 feature flags should remain disabled:

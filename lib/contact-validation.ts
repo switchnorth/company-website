@@ -1,11 +1,12 @@
-import { contactInterestOptions, type ContactInterest } from "@/data/contact";
-import type { ContactFormState } from "@/types/contact";
-import type { ContactLead } from "@/types/lead";
+import { contactInterestOptions, type ContactInterest } from "../data/contact";
+import type { ContactFormState } from "../types/contact";
+import type { ContactLead } from "../types/lead";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phonePattern = /^[+\d\s().-]{7,24}$/;
 const suspiciousUrlPattern = /(https?:\/\/|www\.)/i;
 const repeatedUrlPattern = /(https?:\/\/|www\.).*(https?:\/\/|www\.)/i;
+const headerInjectionPattern = /[\r\n]/;
 const interestValues = new Set<string>(
   contactInterestOptions.map((option) => option.value),
 );
@@ -17,7 +18,11 @@ function readString(formData: FormData, key: string) {
 }
 
 function hasObviousSpam(value: string) {
-  return repeatedUrlPattern.test(value) || suspiciousUrlPattern.test(value.slice(0, 80));
+  return (
+    headerInjectionPattern.test(value) ||
+    repeatedUrlPattern.test(value) ||
+    suspiciousUrlPattern.test(value.slice(0, 80))
+  );
 }
 
 export function parseContactFormData(formData: FormData): ContactLead {
@@ -47,7 +52,11 @@ export function validateContactLead(lead: ContactLead) {
     errors.fullName = "Enter your full name using 2 to 100 characters.";
   }
 
-  if (!emailPattern.test(lead.email) || lead.email.length > 160) {
+  if (
+    !emailPattern.test(lead.email) ||
+    lead.email.length > 160 ||
+    headerInjectionPattern.test(lead.email)
+  ) {
     errors.email = "Enter a valid email address.";
   }
 
@@ -70,7 +79,7 @@ export function validateContactLead(lead: ContactLead) {
   if (
     lead.message.length < 20 ||
     lead.message.length > 2000 ||
-    hasObviousSpam(lead.message)
+    repeatedUrlPattern.test(lead.message)
   ) {
     errors.message =
       "Enter a message between 20 and 2000 characters without promotional links.";

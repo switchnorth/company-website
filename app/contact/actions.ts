@@ -18,9 +18,12 @@ export async function submitContactForm(
 
   if (honeypot) {
     return {
-      status: "success",
-      message: "Thanks. Your message has been received.",
-      errors: {},
+      status: "error",
+      message:
+        "We could not send your message right now. Please try again or contact the office directly.",
+      errors: {
+        form: "Submission rejected.",
+      },
     };
   }
 
@@ -72,7 +75,7 @@ export async function submitContactForm(
       status: "success",
       message:
         result.delivery === "sent"
-          ? "Thanks. Your message has been received and a confirmation email has been sent."
+          ? "Thank you. Your message has been sent successfully."
           : "Thanks. Your message passed validation. Email delivery is disabled in this development build.",
       errors: {},
     };
