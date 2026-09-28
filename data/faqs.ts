@@ -78,9 +78,9 @@ export const faqGroups: FaqGroup[] = [
     slug: "switch-north",
     questions: [
       {
-        question: "Is the demo licence number on this development site real?",
+        question: "How should consultant credentials be confirmed?",
         answer:
-          "No. DEMO-RCIC-000000 is placeholder development data and must be replaced and verified before production.",
+          "Professional credentials should be confirmed directly with the consultant and the appropriate regulator before retaining services or relying on any credential claim.",
         relatedHref: "/about",
       },
       {

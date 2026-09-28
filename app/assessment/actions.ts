@@ -69,7 +69,7 @@ export async function submitAssessmentForm(
       message:
         result.delivery === "sent"
           ? "Thanks. Your assessment has been received for review. A confirmation email has been sent."
-          : "Thanks. Your assessment has been received for review. Email delivery is disabled in this development build.",
+          : "Thanks. Your assessment has been received for review.",
       errors: {},
     };
   } catch {

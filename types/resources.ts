@@ -45,7 +45,7 @@ export type ResourceArticle = {
   publishedAt: string;
   updatedAt: string;
   author: string;
-  sample: boolean;
+  generalGuide: boolean;
   content: ArticleBlock[];
   officialLinks: OfficialResourceLink[];
   relatedServices: NavigationItem[];

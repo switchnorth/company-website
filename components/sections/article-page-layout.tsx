@@ -63,7 +63,7 @@ export function ArticlePageLayout({ article }: { article: ResourceArticle }) {
   return (
     <>
       <PageHeader
-        eyebrow={article.sample ? "Sample Article" : category?.title}
+        eyebrow={article.generalGuide ? "General Guide" : category?.title}
         title={article.title}
         description={article.description}
       >
@@ -89,16 +89,16 @@ export function ArticlePageLayout({ article }: { article: ResourceArticle }) {
         />
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-start">
-          <article className="grid gap-7">
-            {article.sample ? (
+          <article className="grid max-w-3xl gap-7">
+            {article.generalGuide ? (
               <Card className="border-accent-red/20 bg-accent-red-soft">
                 <p className="text-sm font-semibold uppercase text-accent-red">
-                  Sample content
+                  General information
                 </p>
                 <p className="mt-3 text-base leading-7 text-muted">
-                  This resource demonstrates the article design and content
-                  architecture. It must be reviewed and replaced or approved before
-                  production.
+                  This resource is general planning information. Confirm current
+                  requirements through official sources or a consultation before
+                  making immigration decisions.
                 </p>
               </Card>
             ) : null}
@@ -168,7 +168,7 @@ export function ArticlePageLayout({ article }: { article: ResourceArticle }) {
           <SectionHeading
             eyebrow="Related Reading"
             title="More from this category."
-            description="Use these sample resources as starting points for reviewed article content later."
+            description="Use these resources as general planning context, then confirm current requirements before making decisions."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {relatedArticles.map((relatedArticle) => (

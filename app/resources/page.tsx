@@ -29,7 +29,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Resources",
   description:
-    "Canadian immigration resources, sample guides, FAQs, and tools from Switch North Immigration.",
+    "Canadian immigration resources, general guides, FAQs, and tools from Switch North Immigration.",
   path: "/resources",
 });
 
@@ -82,7 +82,7 @@ export default function ResourcesPage() {
       <PageHeader
         eyebrow="Resources"
         title="Immigration resources for clearer planning."
-        description="Use sample guides, official links, FAQs, and tools to prepare for a more focused Canadian immigration conversation."
+        description="Use general guides, official links, FAQs, and tools to prepare for a more focused Canadian immigration conversation."
       />
 
       <Section containerClassName="grid gap-8">
@@ -149,9 +149,9 @@ export default function ResourcesPage() {
 
       <Section>
         <SectionHeading
-          eyebrow="Sample Articles"
-          title="A reusable article system without a CMS."
-          description="These sample pages demonstrate SEO metadata, breadcrumbs, Article structured data, official links, related services, and CMS-ready content blocks."
+          eyebrow="General Guides"
+          title="Planning resources organized by immigration topic."
+          description="These pages provide general information, official source links, related services, and a structure that can support future reviewed articles."
         />
         <div className="mt-10 grid gap-12">
           {resourceCategories.map((category) => {
@@ -177,7 +177,7 @@ export default function ResourcesPage() {
                     </p>
                   </div>
                   <span className="text-base font-semibold text-brand-teal">
-                    {articles.length} sample articles
+                    {articles.length} guides
                   </span>
                 </div>
                 {articles.length > 0 ? (
@@ -191,7 +191,7 @@ export default function ResourcesPage() {
                         <Card className="h-full hover:-translate-y-0.5 hover:border-brand-teal/35 hover:shadow-soft">
                           <div className="flex items-center gap-2 text-xs font-semibold uppercase text-accent-red">
                             <FileText aria-hidden="true" size={15} />
-                            {article.sample ? "Sample Article" : "Article"}
+                            {article.generalGuide ? "General Guide" : "Article"}
                           </div>
                           <CardHeader className="mt-4">
                             <CardTitle>{article.title}</CardTitle>
@@ -203,7 +203,7 @@ export default function ResourcesPage() {
                             <span>{article.author}</span>
                           </div>
                           <span className="mt-5 inline-flex items-center gap-2 text-base font-semibold text-brand-teal group-hover:text-accent-red">
-                            Read sample
+                            Read guide
                             <ArrowRight aria-hidden="true" size={16} />
                           </span>
                         </Card>
@@ -213,7 +213,7 @@ export default function ResourcesPage() {
                 ) : (
                   <Card className="mt-6 bg-surface-soft">
                     <p className="text-base leading-8 text-muted">
-                      No sample articles are currently assigned to this category.
+                      No guides are currently assigned to this category.
                     </p>
                   </Card>
                 )}

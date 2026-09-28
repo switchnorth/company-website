@@ -62,13 +62,13 @@ export const resourceArticles: ResourceArticle[] = [
   {
     title: "Express Entry Profile Basics",
     description:
-      "A sample overview of the information skilled-worker candidates often organize before creating or updating an Express Entry profile.",
+      "A general overview of the information skilled-worker candidates often organize before creating or updating an Express Entry profile.",
     slug: "express-entry-profile-basics",
     category: "express-entry",
     publishedAt: "2026-09-11",
     updatedAt: "2026-09-11",
     author,
-    sample: true,
+    generalGuide: true,
     content: [
       {
         type: "paragraph",
@@ -87,8 +87,8 @@ export const resourceArticles: ResourceArticle[] = [
       },
       {
         type: "callout",
-        title: "Sample content",
-        text: "This article is demonstration content. Current Express Entry instructions should be confirmed through official Government of Canada sources or a consultation.",
+        title: "General information",
+        text: "This article is general information. Current Express Entry instructions should be confirmed through official Government of Canada sources or a consultation.",
       },
     ],
     officialLinks: [
@@ -109,13 +109,13 @@ export const resourceArticles: ResourceArticle[] = [
   {
     title: "Using A CRS Calculator Responsibly",
     description:
-      "A sample guide to treating a CRS estimate as planning information, not as an official IRCC score.",
+      "A general guide to treating a CRS estimate as planning information, not as an official IRCC score.",
     slug: "using-a-crs-calculator-responsibly",
     category: "express-entry",
     publishedAt: "2026-09-11",
     updatedAt: "2026-09-11",
     author,
-    sample: true,
+    generalGuide: true,
     content: [
       {
         type: "paragraph",
@@ -151,13 +151,13 @@ export const resourceArticles: ResourceArticle[] = [
   {
     title: "Permanent Residence Document Consistency",
     description:
-      "A sample planning article about keeping identity, family, education, work, and travel records consistent across an application package.",
+      "A general planning article about keeping identity, family, education, work, and travel records consistent across an application package.",
     slug: "permanent-residence-document-consistency",
     category: "permanent-residence",
     publishedAt: "2026-09-11",
     updatedAt: "2026-09-11",
     author,
-    sample: true,
+    generalGuide: true,
     content: [
       {
         type: "paragraph",
@@ -192,13 +192,13 @@ export const resourceArticles: ResourceArticle[] = [
   {
     title: "Work Permit Planning Questions",
     description:
-      "A sample guide to the practical questions workers and employers can organize before discussing Canadian work authorization.",
+      "A general guide to the practical questions workers and employers can organize before discussing Canadian work authorization.",
     slug: "work-permit-planning-questions",
     category: "work-in-canada",
     publishedAt: "2026-09-11",
     updatedAt: "2026-09-11",
     author,
-    sample: true,
+    generalGuide: true,
     content: [
       {
         type: "paragraph",
@@ -233,13 +233,13 @@ export const resourceArticles: ResourceArticle[] = [
   {
     title: "Study Permit Document Readiness",
     description:
-      "A sample checklist-style article for students preparing to discuss study permit documents and school plans.",
+      "A general checklist-style guide for students preparing to discuss study permit documents and school plans.",
     slug: "study-permit-document-readiness",
     category: "study-in-canada",
     publishedAt: "2026-09-11",
     updatedAt: "2026-09-11",
     author,
-    sample: true,
+    generalGuide: true,
     content: [
       {
         type: "paragraph",
@@ -274,13 +274,13 @@ export const resourceArticles: ResourceArticle[] = [
   {
     title: "Family Sponsorship Preparation",
     description:
-      "A sample overview of sponsor, applicant, relationship, and family-document organization before a sponsorship consultation.",
+      "A general overview of sponsor, applicant, relationship, and family-document organization before a sponsorship consultation.",
     slug: "family-sponsorship-preparation",
     category: "family-sponsorship",
     publishedAt: "2026-09-11",
     updatedAt: "2026-09-11",
     author,
-    sample: true,
+    generalGuide: true,
     content: [
       {
         type: "paragraph",
@@ -315,13 +315,13 @@ export const resourceArticles: ResourceArticle[] = [
   {
     title: "Visitor Visa Purpose Of Travel",
     description:
-      "A sample article about organizing the purpose, timing, and supporting context for a visitor visa conversation.",
+      "A general article about organizing the purpose, timing, and supporting context for a visitor visa conversation.",
     slug: "visitor-visa-purpose-of-travel",
     category: "visitor-immigration",
     publishedAt: "2026-09-11",
     updatedAt: "2026-09-11",
     author,
-    sample: true,
+    generalGuide: true,
     content: [
       {
         type: "paragraph",
@@ -356,13 +356,13 @@ export const resourceArticles: ResourceArticle[] = [
   {
     title: "Citizenship Records To Review",
     description:
-      "A sample overview of records permanent residents may want to organize before asking citizenship-related questions.",
+      "A general overview of records permanent residents may want to organize before asking citizenship-related questions.",
     slug: "citizenship-records-to-review",
     category: "citizenship",
     publishedAt: "2026-09-11",
     updatedAt: "2026-09-11",
     author,
-    sample: true,
+    generalGuide: true,
     content: [
       {
         type: "paragraph",
@@ -393,13 +393,13 @@ export const resourceArticles: ResourceArticle[] = [
   {
     title: "Preparing For An Immigration Consultation",
     description:
-      "A sample guide to organizing goals, documents, and questions before speaking with an immigration professional.",
+      "A general guide to organizing goals, documents, and questions before speaking with an immigration professional.",
     slug: "preparing-for-an-immigration-consultation",
     category: "immigration-guides",
     publishedAt: "2026-09-11",
     updatedAt: "2026-09-11",
     author,
-    sample: true,
+    generalGuide: true,
     content: [
       {
         type: "paragraph",

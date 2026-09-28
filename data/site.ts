@@ -12,11 +12,12 @@ import {
 import { getConsultationCtaHref } from "./features";
 import type { SiteConfig } from "@/types/site";
 
-// DEVELOPMENT PLACEHOLDER DATA:
-// All demo business information in this file MUST be replaced and verified
-// before production. Do not treat DEMO-RCIC-000000 as a genuine licence.
+// CLIENT CONFIRMATION REQUIRED:
+// Keep business/contact information centralized here. Confirm consultant
+// credentials, address, hours, languages, and social profiles before relying on
+// them for regulated claims or local SEO.
 export const siteConfig: SiteConfig = {
-  isDevelopmentPlaceholderData: true,
+  requiresClientConfirmation: true,
   businessName: "Switch North Immigration",
   domain: "https://switchnorth.ca",
   description:
@@ -39,12 +40,7 @@ export const siteConfig: SiteConfig = {
     width: 363,
     height: 186,
   },
-  socialLinks: [
-    {
-      label: "LinkedIn",
-      href: "#",
-    },
-  ],
+  socialLinks: [],
   navigation: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },

@@ -168,15 +168,18 @@ export default function AboutPage() {
             <dl className="mt-6 grid gap-4 border-t border-border pt-6 text-base leading-8">
               <div>
                 <dt className="font-semibold text-deep-ink">
-                  Development credential placeholder
+                  Credential confirmation
                 </dt>
-                <dd className="text-muted">{siteConfig.consultantLicense}</dd>
+                <dd className="text-muted">
+                  Professional credentials should be confirmed directly with the
+                  consultant and the appropriate regulator before retaining services.
+                </dd>
               </div>
               <div>
-                <dt className="font-semibold text-deep-ink">Important note</dt>
+                <dt className="font-semibold text-deep-ink">Service approach</dt>
                 <dd className="text-muted">
-                  This credential is demo data and must be replaced, verified, and
-                  reviewed before production.
+                  Consultations and application support are based on individual facts,
+                  current requirements, and careful document review.
                 </dd>
               </div>
             </dl>
@@ -208,7 +211,7 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="Languages"
               title="Support in the languages currently listed for the practice."
-              description="Language availability is stored centrally as demo business data and should be confirmed before production."
+              description="Please mention your preferred language when contacting the office so the next step can be planned appropriately."
             />
             <div className="mt-8 flex flex-wrap gap-3">
               {siteConfig.languages.map((language) => (

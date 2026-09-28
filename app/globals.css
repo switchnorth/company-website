@@ -48,6 +48,17 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
 body {
   min-height: 100vh;
   overflow-x: hidden;
@@ -77,6 +88,10 @@ select {
 .container-page {
   width: min(1180px, calc(100% - 32px));
   margin-inline: auto;
+}
+
+:target {
+  scroll-margin-top: 108px;
 }
 
 .focus-ring {
@@ -142,4 +157,9 @@ select {
 
 .prose-site p + p {
   margin-top: 1rem;
+}
+
+.prose-site,
+.measure-readable {
+  max-width: 72ch;
 }

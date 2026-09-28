@@ -76,7 +76,7 @@ export async function submitContactForm(
       message:
         result.delivery === "sent"
           ? "Thank you. Your message has been sent successfully."
-          : "Thanks. Your message passed validation. Email delivery is disabled in this development build.",
+          : "Thank you. Your message has been received for review.",
       errors: {},
     };
   } catch {
