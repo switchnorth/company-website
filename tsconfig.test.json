@@ -20,6 +20,8 @@
     "lib/admin/**/*.ts",
     "lib/agreement/**/*.ts",
     "lib/booking/**/*.ts",
+    "lib/lead-workflow.ts",
+    "lib/contact-validation.ts",
     "lib/crs/**/*.ts",
     "lib/email/**/*.ts",
     "tests/**/*.ts",
@@ -27,6 +29,7 @@
     "types/admin.ts",
     "types/assessment.ts",
     "types/booking.ts",
+    "types/contact.ts",
     "types/crs.ts",
     "types/lead.ts"
   ],

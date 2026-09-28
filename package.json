@@ -10,9 +10,11 @@
     "test": "tsc -p tsconfig.test.json && node --test .test-build/tests/**/*.test.js"
   },
   "dependencies": {
+    "@types/nodemailer": "^8.0.2",
     "@types/pdfkit": "^0.17.6",
     "lucide-react": "1.44.0",
     "next": "16.3.4",
+    "nodemailer": "^10.0.11",
     "pdfkit": "^0.20.2",
     "react": "19.3.0",
     "react-dom": "19.3.0",

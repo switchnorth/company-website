@@ -34,6 +34,8 @@ export const metadata: Metadata = createPageMetadata({
   path: "/contact",
 });
 
+export const runtime = "nodejs";
+
 const phoneHref = `tel:${siteConfig.phone.replace(/[^\d+]/g, "")}`;
 const emailHref = `mailto:${siteConfig.email}`;
 
