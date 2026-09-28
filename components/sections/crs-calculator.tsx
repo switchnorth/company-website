@@ -125,7 +125,7 @@ function LanguageGroup({
                 className="text-xs font-semibold uppercase text-muted"
                 htmlFor={fieldKey}
               >
-                {ability}
+                {ability} CLB/NCLC
               </label>
               <select
                 aria-describedby={errors[fieldKey] ? `${fieldKey}-error` : undefined}
@@ -318,7 +318,7 @@ export function CrsCalculator() {
             <p className="text-[13px] font-semibold uppercase text-brand-mint">
               Estimated CRS score
             </p>
-            <p className="mt-1 text-5xl font-semibold leading-none">
+            <p aria-live="polite" className="mt-1 text-5xl font-semibold leading-none">
               {hasErrors ? "--" : result.total}
             </p>
           </div>
@@ -386,6 +386,7 @@ export function CrsCalculator() {
                 aria-invalid={Boolean(errors.age)}
                 className={fieldControlClasses}
                 id="age"
+                inputMode="numeric"
                 max={150}
                 min={0}
                 onChange={(event) =>
@@ -594,7 +595,7 @@ export function CrsCalculator() {
               <p className="text-[15px] font-semibold uppercase text-brand-mint">
                 Estimated CRS score
               </p>
-              <p className="mt-1 text-5xl font-semibold leading-none">
+              <p aria-live="polite" className="mt-1 text-5xl font-semibold leading-none">
                 {hasErrors ? "--" : result.total}
               </p>
             </div>
@@ -618,7 +619,7 @@ export function CrsCalculator() {
 
         {hasErrors ? (
           <Card className="border-accent-red/25 bg-accent-red-soft">
-            <div className="flex gap-3 text-base leading-7 text-accent-red-dark">
+            <div className="flex gap-3 text-base leading-7 text-accent-red-dark" role="alert">
               <AlertCircle aria-hidden="true" className="mt-0.5 shrink-0" size={18} />
               <p>Review the highlighted fields before relying on the estimate.</p>
             </div>

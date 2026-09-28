@@ -138,7 +138,7 @@ const sizes: Record<ButtonSize, string> = {
 };
 
 const base =
-  "focus-ring inline-flex items-center justify-center gap-2 rounded-md font-semibold leading-none transition duration-200";
+  "focus-ring inline-flex min-w-0 items-center justify-center gap-2 rounded-md text-center font-semibold leading-tight transition duration-200";
 
 function getButtonStyle(
   variant: ButtonVariant,

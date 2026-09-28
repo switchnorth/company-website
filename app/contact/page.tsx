@@ -66,7 +66,7 @@ const contactMethods = [
   },
 ];
 
-// Local SEO structure is intentionally conservative while the office address is demo data.
+// Local SEO structure is intentionally conservative until the precise public office address is confirmed.
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -194,8 +194,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <SectionHeading
             eyebrow="Office Location"
-            title="Location details are ready for the real office address."
-            description="The current address is development placeholder data. A real map pin should only be embedded after the office address has been confirmed."
+            title="Office location details."
+            description="Switch North lists its office location conservatively until a precise public map pin is approved for publication."
           />
           <Card className="overflow-hidden p-0">
             <div className="relative min-h-80 bg-white">
@@ -206,11 +206,11 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     <Map aria-hidden="true" size={26} />
                   </div>
                   <h2 className="mt-5 text-xl font-semibold text-deep-ink">
-                    Map placeholder
+                    Map to be added
                   </h2>
                   <p className="mt-3 text-base leading-8 text-muted">
-                    Replace the demo address before enabling an embedded map or
-                    location pin.
+                    A precise embedded map will be added after the public office
+                    address is confirmed for location display.
                   </p>
                 </div>
               </div>

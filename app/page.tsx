@@ -77,12 +77,12 @@ const trustSignals = [
   },
   {
     title: "Multilingual support",
-    body: `Current development languages: ${siteConfig.languages.join(", ")}.`,
+    body: `Support is available in ${siteConfig.languages.join(", ")}.`,
     icon: Languages,
   },
   {
     title: "Canada-wide and international",
-    body: "The demo service area supports planning conversations from Canada and abroad.",
+    body: `Planning conversations are available for ${siteConfig.serviceArea.toLowerCase()}.`,
     icon: Globe2,
   },
   {
@@ -210,7 +210,7 @@ const faqs = [
   {
     question: "Can you help clients outside Canada?",
     answer:
-      "The current demo service area is Canada and international clients. Final service availability should be confirmed before production launch.",
+      `Switch North serves ${siteConfig.serviceArea.toLowerCase()}. If your situation involves another jurisdiction or an urgent deadline, share those details when you contact the office.`,
   },
   {
     question: "Will the website show current program requirements?",
@@ -218,9 +218,9 @@ const faqs = [
       "Program-specific information should be reviewed against current official sources before publication. This homepage intentionally keeps guidance general.",
   },
   {
-    question: "Is the demo RCIC number real?",
+    question: "How should consultant credentials be confirmed?",
     answer:
-      "No. DEMO-RCIC-000000 is development placeholder data and must be replaced with verified professional information before production.",
+      "Professional credentials should be confirmed directly with the consultant and the appropriate regulator before retaining services or relying on any credential claim.",
   },
 ];
 
@@ -432,7 +432,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="About"
             title="A modern immigration practice built around careful guidance."
-            description={`${siteConfig.businessName} is represented in development by ${siteConfig.consultantName}, ${siteConfig.consultantTitle}. This profile uses demo information that must be verified before production.`}
+            description={`${siteConfig.businessName} is represented by ${siteConfig.consultantName}, ${siteConfig.consultantTitle}. The practice focuses on careful Canadian immigration planning and organized application support.`}
             inverse
           />
           <Card className="border-white/15 bg-white/8 text-white shadow-none">
@@ -450,7 +450,7 @@ export default function Home() {
               </div>
             </div>
             <p className="mt-5 text-xs leading-6 text-white/62">
-              Development licence placeholder: {siteConfig.consultantLicense}.
+              Professional credentials should be confirmed directly before retaining services.
             </p>
             <ButtonLink href="/about" variant="light" className="mt-6">
               Learn About Us

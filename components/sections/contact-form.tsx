@@ -21,6 +21,18 @@ const initialState: ContactFormState = {
   errors: {},
 };
 
+function RequiredMark() {
+  return (
+    <span aria-hidden="true" className="ml-1 text-accent-red">
+      *
+    </span>
+  );
+}
+
+function OptionalText() {
+  return <span className="ml-1 font-normal text-muted">(optional)</span>;
+}
+
 function SubmitButton({ submitted }: { submitted: boolean }) {
   const { pending } = useFormStatus();
 
@@ -65,6 +77,13 @@ export function ContactForm({ initialInterest = "" }: { initialInterest?: string
         type="text"
       />
 
+      <p className="text-sm leading-6 text-muted">
+        <span aria-hidden="true" className="font-semibold text-accent-red">
+          *
+        </span>{" "}
+        Required fields. Share only the details needed to understand your inquiry.
+      </p>
+
       {state.message ? (
         <div
           className={`rounded-md border p-4 text-sm leading-6 ${
@@ -89,6 +108,7 @@ export function ContactForm({ initialInterest = "" }: { initialInterest?: string
         <div>
           <label className={fieldLabelClasses} htmlFor="fullName">
             Full Name
+            <RequiredMark />
           </label>
           <input
             aria-describedby={state.errors.fullName ? "fullName-error" : undefined}
@@ -107,6 +127,7 @@ export function ContactForm({ initialInterest = "" }: { initialInterest?: string
         <div>
           <label className={fieldLabelClasses} htmlFor="email">
             Email
+            <RequiredMark />
           </label>
           <input
             aria-describedby={state.errors.email ? "email-error" : undefined}
@@ -127,6 +148,7 @@ export function ContactForm({ initialInterest = "" }: { initialInterest?: string
         <div>
           <label className={fieldLabelClasses} htmlFor="phone">
             Phone
+            <OptionalText />
           </label>
           <input
             aria-describedby={state.errors.phone ? "phone-error" : undefined}
@@ -144,6 +166,7 @@ export function ContactForm({ initialInterest = "" }: { initialInterest?: string
         <div>
           <label className={fieldLabelClasses} htmlFor="country">
             Country of Residence
+            <RequiredMark />
           </label>
           <input
             aria-describedby={state.errors.country ? "country-error" : undefined}
@@ -163,13 +186,14 @@ export function ContactForm({ initialInterest = "" }: { initialInterest?: string
       <div>
         <label className={fieldLabelClasses} htmlFor="interest">
           Immigration Interest
+          <RequiredMark />
         </label>
         <select
           aria-describedby={state.errors.interest ? "interest-error" : undefined}
           aria-invalid={Boolean(state.errors.interest)}
-            className={fieldControlClasses}
-            defaultValue={initialInterest}
-            id="interest"
+          className={fieldControlClasses}
+          defaultValue={initialInterest}
+          id="interest"
           name="interest"
           required
         >
@@ -186,9 +210,10 @@ export function ContactForm({ initialInterest = "" }: { initialInterest?: string
       <div>
         <label className={fieldLabelClasses} htmlFor="message">
           Message
+          <RequiredMark />
         </label>
         <textarea
-          aria-describedby={state.errors.message ? "message-error" : "message-help"}
+          aria-describedby={state.errors.message ? "message-help message-error" : "message-help"}
           aria-invalid={Boolean(state.errors.message)}
           className={`${fieldControlClasses} min-h-36 resize-y`}
           id="message"
@@ -207,13 +232,13 @@ export function ContactForm({ initialInterest = "" }: { initialInterest?: string
           <input
             aria-describedby={state.errors.consent ? "consent-error" : undefined}
             aria-invalid={Boolean(state.errors.consent)}
-            className="mt-1 size-4 rounded border-border text-brand-teal focus:ring-brand-teal"
+            className="mt-1 size-4 rounded border-border text-brand-teal focus:ring-2 focus:ring-brand-teal/25"
             name="consent"
             required
             type="checkbox"
           />
           <span>
-            I consent to Switch North Immigration using this information to respond to
+            <RequiredMark /> I consent to Switch North Immigration using this information to respond to
             my inquiry. I understand this form does not create a consultant-client
             relationship.
           </span>
@@ -224,11 +249,11 @@ export function ContactForm({ initialInterest = "" }: { initialInterest?: string
       <div className="flex flex-col gap-4 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-base leading-7 text-muted">
           Your information is handled according to the{" "}
-          <Link className="font-semibold text-brand-teal hover:text-accent-red" href="/privacy">
+          <Link className="focus-ring rounded-sm font-semibold text-brand-teal hover:text-accent-red" href="/privacy">
             Privacy Policy
           </Link>{" "}
           and{" "}
-          <Link className="font-semibold text-brand-teal hover:text-accent-red" href="/terms">
+          <Link className="focus-ring rounded-sm font-semibold text-brand-teal hover:text-accent-red" href="/terms">
             Terms
           </Link>
           .

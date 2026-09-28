@@ -187,12 +187,12 @@ export function Header() {
         <nav
           aria-label="Mobile primary"
           id="mobile-menu"
-          className="border-t border-border bg-white lg:hidden"
+          className="max-h-[calc(100dvh-84px)] overflow-y-auto border-t border-border bg-white lg:hidden"
         >
           <div className="container-page grid gap-1 py-4">
             {siteConfig.navigation.map((item) => (
               <Link
-                className={`focus-ring rounded-md px-3 py-3 text-[17px] font-semibold ${
+                className={`focus-ring rounded-md px-3 py-3 text-base font-semibold ${
                   isActive(item.href) ? "bg-brand-teal-soft text-brand-navy" : "text-deep-ink"
                 }`}
                 href={item.href}
@@ -203,7 +203,7 @@ export function Header() {
               </Link>
             ))}
             <details className="mt-3 rounded-md border border-border bg-surface-soft">
-              <summary className="focus-ring cursor-pointer rounded-md px-3 py-3 text-[17px] font-semibold text-deep-ink">
+              <summary className="focus-ring cursor-pointer rounded-md px-3 py-3 text-base font-semibold text-deep-ink">
                 Service Areas
               </summary>
               <div className="grid gap-1 border-t border-border p-2">

@@ -5,7 +5,7 @@ export function SiteStructuredData() {
     .map((item) => item.href)
     .filter((href) => href && href !== "#");
 
-  // Keep local business details conservative while address and credentials are demo data.
+  // Keep local business details conservative until address and credential claims are confirmed.
   const organization = {
     "@context": "https://schema.org",
     "@type": ["Organization", "ProfessionalService"],

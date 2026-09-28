@@ -30,7 +30,7 @@ export type SiteLogo = {
 };
 
 export type SiteConfig = {
-  isDevelopmentPlaceholderData: boolean;
+  requiresClientConfirmation: boolean;
   businessName: string;
   domain: string;
   description: string;

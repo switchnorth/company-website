@@ -51,6 +51,18 @@ const initialSubmitState: AssessmentSubmitState = {
 const totalSteps = assessmentSteps.length;
 const reviewStepIndex = totalSteps - 1;
 
+function RequiredMark() {
+  return (
+    <span aria-hidden="true" className="ml-1 text-accent-red">
+      *
+    </span>
+  );
+}
+
+function OptionalText() {
+  return <span className="ml-1 font-normal text-muted">(optional)</span>;
+}
+
 function SubmitButton({ submitted }: { submitted: boolean }) {
   const { pending } = useFormStatus();
 
@@ -108,14 +120,18 @@ function TextInput({
 }: TextInputProps) {
   const errorId = `${field}-error`;
   const helpId = help ? `${field}-help` : undefined;
+  const describedBy = [helpId, error ? errorId : undefined]
+    .filter(Boolean)
+    .join(" ") || undefined;
 
   return (
     <div>
       <label className={fieldLabelClasses} htmlFor={field}>
         {label}
+        {required ? <RequiredMark /> : <OptionalText />}
       </label>
       <input
-        aria-describedby={error ? errorId : helpId}
+        aria-describedby={describedBy}
         aria-invalid={Boolean(error)}
         autoComplete={autoComplete}
         className={fieldControlClasses}
@@ -161,6 +177,7 @@ function SelectInput({
     <div>
       <label className={fieldLabelClasses} htmlFor={field}>
         {label}
+        <RequiredMark />
       </label>
       <select
         aria-describedby={error ? errorId : undefined}
@@ -203,14 +220,18 @@ function TextareaInput({
 }: TextareaInputProps) {
   const errorId = `${field}-error`;
   const helpId = help ? `${field}-help` : undefined;
+  const describedBy = [helpId, error ? errorId : undefined]
+    .filter(Boolean)
+    .join(" ") || undefined;
 
   return (
     <div>
       <label className={fieldLabelClasses} htmlFor={field}>
         {label}
+        <OptionalText />
       </label>
       <textarea
-        aria-describedby={error ? errorId : helpId}
+        aria-describedby={describedBy}
         aria-invalid={Boolean(error)}
         className={`${fieldControlClasses} min-h-36 resize-y`}
         id={field}
@@ -249,8 +270,11 @@ function RadioGroup({
   const errorId = `${field}-error`;
 
   return (
-    <fieldset aria-describedby={error ? errorId : undefined}>
-      <legend className="text-base font-semibold text-deep-ink">{label}</legend>
+    <fieldset aria-describedby={error ? errorId : undefined} aria-invalid={Boolean(error)}>
+      <legend className="text-base font-semibold text-deep-ink">
+        {label}
+        <RequiredMark />
+      </legend>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
         {options.map((option) => (
           <label
@@ -263,7 +287,7 @@ function RadioGroup({
           >
             <input
               checked={value === option.value}
-              className="size-4 border-border text-brand-teal focus:ring-brand-teal"
+              className="size-4 border-border text-brand-teal focus:ring-2 focus:ring-brand-teal/25"
               name={field}
               onChange={() => onChange(field, option.value)}
               required
@@ -292,7 +316,12 @@ function ProgressIndicator({ currentStep }: { currentStep: number }) {
       </div>
       <div className="mt-3 h-2 rounded-full bg-surface-soft">
         <div
+          aria-label="Assessment completion"
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={Math.round(progress)}
           className="h-2 rounded-full bg-brand-teal transition-all duration-300"
+          role="progressbar"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -633,7 +662,7 @@ function AdditionalStep({ data, errors, onChange }: StepContentProps) {
             aria-describedby={errors.consent ? "consent-error" : undefined}
             aria-invalid={Boolean(errors.consent)}
             checked={data.consent === "yes"}
-            className="mt-1 size-4 rounded border-border text-brand-teal focus:ring-brand-teal"
+            className="mt-1 size-4 rounded border-border text-brand-teal focus:ring-2 focus:ring-brand-teal/25"
             name="consent"
             onChange={(event) => onChange("consent", event.target.checked ? "yes" : "")}
             required
@@ -641,7 +670,7 @@ function AdditionalStep({ data, errors, onChange }: StepContentProps) {
             value="yes"
           />
           <span>
-            I consent to Switch North Immigration reviewing this information and
+            <RequiredMark /> I consent to Switch North Immigration reviewing this information and
             contacting me about possible next steps. I understand this assessment
             is general intake and does not create a consultant-client relationship.
           </span>
@@ -770,6 +799,12 @@ export function AssessmentForm() {
           type="text"
         />
         <HiddenFields data={data} />
+        <p className="text-sm leading-6 text-muted">
+          <span aria-hidden="true" className="font-semibold text-accent-red">
+            *
+          </span>{" "}
+          Required fields. Optional fields can still help with context when available.
+        </p>
         <ProgressIndicator currentStep={currentStep} />
 
         {submitState.message ? (
@@ -804,7 +839,7 @@ export function AssessmentForm() {
           <p className="text-sm font-semibold uppercase text-accent-red">
             {activeStep.id === "review" ? "Final Review" : "Assessment Intake"}
           </p>
-          <h2 className="font-serif text-3xl leading-tight text-deep-ink md:text-4xl">
+          <h2 className="font-serif text-2xl leading-tight text-deep-ink md:text-3xl">
             {activeStep.title}
           </h2>
           <p className="max-w-2xl text-base leading-8 text-muted">
@@ -840,11 +875,11 @@ export function AssessmentForm() {
             This assessment does not calculate or promise eligibility. Information
             submitted here will be reviewed to help identify possible options and
             appropriate next steps. See the{" "}
-            <Link className="font-semibold text-brand-teal hover:text-accent-red" href="/privacy">
+            <Link className="focus-ring rounded-sm font-semibold text-brand-teal hover:text-accent-red" href="/privacy">
               Privacy Policy
             </Link>{" "}
             and{" "}
-            <Link className="font-semibold text-brand-teal hover:text-accent-red" href="/terms">
+            <Link className="focus-ring rounded-sm font-semibold text-brand-teal hover:text-accent-red" href="/terms">
               Terms
             </Link>
             .
